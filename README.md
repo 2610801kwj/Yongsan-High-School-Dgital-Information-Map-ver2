@@ -60,7 +60,7 @@
     <div id="ui-layer">
         <div class="title-box">
             <h1 style="margin:0; font-size: 22px; color: #333;">🏫 학교 디지털 정보 지도</h1>
-            <p style="margin:5px 0 0; font-size: 14px; color: #666;">객체를 클릭하여 정보를 확인하세요</p>
+            <p style="margin:5px 0 0; font-size: 14px; color: #666;">건물을 클릭하여 정보를 확인하세요</p>
         </div>
     </div>
 
