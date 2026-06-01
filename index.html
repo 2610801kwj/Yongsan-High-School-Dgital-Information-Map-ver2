@@ -6,7 +6,43 @@
     <title>학교 디지털 정보 지도</title>
     <style>
         body { margin: 0; overflow: hidden; background-color: #f0f0f0; font-family: 'Malgun Gothic', sans-serif; }
-        
+                /* 상단 메뉴바 (Header) */
+        #header-bar {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 60px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 5;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 30px; box-sizing: border-box;
+        }
+        .logo { font-size: 18px; font-weight: bold; color: #333; }
+        .nav-links a { text-decoration: none; color: #555; margin-left: 20px; font-size: 14px; font-weight: bold; }
+        .nav-links a:hover { color: #4A90E2; }
+
+        /* 오른쪽 사이드 버튼 메뉴 */
+        #side-menu {
+            position: absolute;
+            top: 80px; right: 20px;
+            z-index: 5; display: flex; flex-direction: column; gap: 10px;
+        }
+        .side-btn {
+            background: white; border: none; padding: 12px; border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1); cursor: pointer; font-size: 18px;
+            transition: transform 0.2s;
+        }
+        .side-btn:hover { transform: scale(1.1); }
+
+        /* 하단 정보창 (Footer) */
+        #footer-bar {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: #333; color: #aaa;
+            padding: 15px 20px; text-align: center; font-size: 11px;
+            z-index: 5; box-sizing: border-box;
+        }
+
         /* 상단 안내 배너 - 화면 가로 기준 항상 정중앙 정렬 */
         #ui-layer {
             position: absolute; 
@@ -55,13 +91,30 @@
         }
     </style>
 </head>
-<body>
-
-    <div id="ui-layer">
-        <div class="title-box">
-            <h1 style="margin:0; font-size: 22px; color: #333;">🏫 학교 디지털 정보 지도</h1>
-            <p style="margin:5px 0 0; font-size: 14px; color: #666;">건물을 클릭하여 정보를 확인하세요</p>
+```html
+    <div id="header-bar">
+        <div class="logo">🏫 용산고등학교 디지털 지도</div>
+        <div class="nav-links">
+            <a href="#" onclick="alert('학교 소개 페이지 준비 중입니다.')">학교소개</a>
+            <a href="#" onclick="alert('공지사항 준비 중입니다.')">공지사항</a>
+            <a href="#" onclick="alert('교육활동 준비 중입니다.')">교육활동</a>
         </div>
+    </div>
+
+    <div id="side-menu">
+        <button class="side-btn" onclick="location.reload();">🔄</button>
+        <button class="side-btn" onclick="alert('도움말: 마우스나 터치로 화면을 돌려 건물을 클릭해 보세요!')">❓</button>
+    </div>
+
+    <div id="ui-layer" style="top: 80px;">
+        <div class="title-box">
+            <h1 style="margin:0; font-size: 20px; color: #333;">학교 디지털 정보 지도</h1>
+            <p style="margin:5px 0 0; font-size: 13px; color: #666;">건물을 클릭하면 상세 정보가 나타납니다.</p>
+        </div>
+    </div>
+
+    <div id="footer-bar">
+        Copyright © 2026 Yongsan High School. All Rights Reserved. | 주소: 서울특별시 용산구 | 대표전화: 02-XXX-XXXX
     </div>
 
     <div id="popup">
@@ -101,7 +154,8 @@
         };
 
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xf0f0f0);
+        scene.background = new THREE.Color(0xdceeff); 
+        scene.fog = new THREE.Fog(0xdceeff, 40, 150); 
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.set(50, 50, 50);
